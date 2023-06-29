@@ -13,14 +13,9 @@
         port: 8080
  
   rules:
-    - name: kafka
-      condition: event.message != ""
-      action:
-        run_playbook:
-          name: do-something.yml
-    - name: webhook
+    - name: test webhook
       condition: event.payload.message != ""
       action:
-        run_playbook:
-          name: do-something.yml
-          var_root: payload
+        run_job_template:
+          name: "AM/Just a ping"
+          organization: Demo
